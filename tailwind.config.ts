@@ -52,6 +52,11 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				'chinese-red': 'hsl(var(--chinese-red))',
+				'chinese-gold': 'hsl(var(--chinese-gold))',
+				'chinese-text': 'hsl(var(--chinese-text))',
+				'chat-user': 'hsl(var(--chat-user))',
+				'chat-bot': 'hsl(var(--chat-bot))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -67,6 +72,14 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			boxShadow: {
+				'soft': 'var(--shadow-soft)',
+				'elegant': 'var(--shadow-elegant)'
+			},
+			backgroundImage: {
+				'gradient-chinese': 'var(--gradient-chinese)',
+				'gradient-soft': 'var(--gradient-soft)'
 			},
 			keyframes: {
 				'accordion-down': {
