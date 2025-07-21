@@ -50,6 +50,13 @@ All colors MUST be HSL.
     /* Shadows */
     --shadow-soft: 0 4px 20px -4px hsl(var(--chinese-red) / 0.1);
     --shadow-elegant: 0 8px 30px -8px hsl(var(--chinese-red) / 0.2);
+    --shadow-glow: 0 0 20px hsl(var(--chinese-gold) / 0.3);
+    
+    /* Animation duration */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s ease;
+
+    --radius: 0.75rem;
 
     --radius: 0.5rem;
 

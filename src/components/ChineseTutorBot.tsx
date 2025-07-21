@@ -3,7 +3,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Volume2, Send, User, Bot } from 'lucide-react';
+import { Volume2, Send, User, Bot, Play, Languages, Sparkles } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface Message {
@@ -194,19 +194,26 @@ export const ChineseTutorBot = () => {
         style={{ height: '500px' }}
       >
         {/* Header */}
-        <div className="bg-gradient-chinese text-primary-foreground p-4 rounded-t-xl">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-chinese-gold/20 flex items-center justify-center">
-              <Bot className="w-6 h-6" />
+        <div className="bg-gradient-chinese text-primary-foreground p-6 rounded-t-xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-20 h-20 bg-chinese-gold/10 rounded-full -translate-y-10 translate-x-10"></div>
+          <div className="absolute bottom-0 left-0 w-16 h-16 bg-chinese-gold/5 rounded-full translate-y-8 -translate-x-8"></div>
+          
+          <div className="relative flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-chinese-gold/20 backdrop-blur-sm flex items-center justify-center border border-chinese-gold/30 shadow-glow">
+              <Languages className="w-6 h-6 text-chinese-gold" />
             </div>
             <div>
-              <h3 className="font-semibold text-lg">Thầy Quân</h3>
-              <p className="text-sm opacity-90">Giáo viên tiếng Trung</p>
+              <h3 className="font-bold text-xl tracking-wide">Thầy Quân</h3>
+              <p className="text-sm opacity-90 flex items-center gap-1">
+                <Sparkles className="w-3 h-3" />
+                Giáo viên tiếng Trung AI
+              </p>
             </div>
           </div>
+          
           {isNameSet && userName && (
-            <div className="mt-2 p-2 bg-chinese-gold/10 rounded-lg">
-              <p className="text-sm">Chào {userName}, cùng học với Thầy Quân nhé! 🇨🇳</p>
+            <div className="mt-4 p-3 bg-chinese-gold/10 backdrop-blur-sm rounded-xl border border-chinese-gold/20">
+              <p className="text-sm font-medium">Chào {userName}, cùng học với Thầy Quân nhé! 🇨🇳</p>
             </div>
           )}
         </div>
@@ -249,16 +256,17 @@ export const ChineseTutorBot = () => {
                     {message.content}
                   </div>
                   {message.sender === 'bot' && (
-                    <div className="flex flex-wrap gap-1 mt-2">
+                    <div className="flex flex-wrap gap-2 mt-3">
                       {extractChineseText(message.content).map((chineseText, index) => (
                         <Button
                           key={index}
                           size="sm"
                           variant="outline"
-                          className="h-6 px-2 text-xs"
+                          className="h-8 px-3 text-xs font-medium border-chinese-red/20 hover:border-chinese-red/40 hover:bg-chinese-red/5 transition-all duration-200 group"
                           onClick={() => speakChinese(chineseText)}
                         >
-                          🔊 {chineseText}
+                          <Volume2 className="w-3 h-3 mr-1.5 text-chinese-red group-hover:scale-110 transition-transform duration-200" />
+                          <span className="text-chinese-text">{chineseText}</span>
                         </Button>
                       ))}
                     </div>
@@ -286,21 +294,21 @@ export const ChineseTutorBot = () => {
         </ScrollArea>
 
         {/* Input Area */}
-        <div className="p-4 border-t">
-          <div className="flex gap-2">
+        <div className="p-4 border-t bg-gradient-to-r from-background to-accent/30">
+          <div className="flex gap-3">
             <Input
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder={!isNameSet ? "Nhập tên của bạn..." : "Hỏi Thầy Quân về tiếng Trung..."}
               disabled={isLoading}
-              className="flex-1"
+              className="flex-1 border-border/50 focus:border-chinese-red/30 focus:ring-chinese-red/20 transition-all duration-200"
             />
             <Button 
               onClick={!isNameSet ? handleSetName : handleSendMessage}
               disabled={isLoading || !inputValue.trim()}
               size="icon"
-              className="bg-chinese-red hover:bg-chinese-red/90"
+              className="bg-chinese-red hover:bg-chinese-red/90 hover:shadow-glow hover:scale-105 transition-all duration-200 disabled:hover:scale-100 disabled:hover:shadow-none"
             >
               <Send className="w-4 h-4" />
             </Button>
